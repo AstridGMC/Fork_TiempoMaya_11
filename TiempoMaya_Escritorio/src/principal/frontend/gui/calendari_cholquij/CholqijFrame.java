@@ -1,5 +1,6 @@
 package principal.frontend.gui.calendari_cholquij;
 
+import java.awt.Color;
 import principal.backend.calendari_cholquij.matriz.ManejadorDeCalendarioCholqij;
 import principal.backend.calendari_cholquij.matriz.elementos.KinCholqij;
 
@@ -21,7 +22,6 @@ public class CholqijFrame extends javax.swing.JFrame {
                 + "parte sutil del ser humano. Imox es la sensibilidad,\n"
                 + "lo inusual y lo excéntrico."));
         this.setLocationRelativeTo(null);
-        
 
     }
 
@@ -36,15 +36,16 @@ public class CholqijFrame extends javax.swing.JFrame {
         nahualLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        infoTextArea = new javax.swing.JTextArea();
         lblTitulo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        fondoTxt = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        infoTextArea = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
 
         energiaLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenesNumerosMayas/numero1.jpg"))); // NOI18N
 
@@ -78,18 +79,38 @@ public class CholqijFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Liberation Mono", 1, 18)); // NOI18N
         jLabel2.setText("Nahual");
 
-        infoTextArea.setEditable(false);
-        infoTextArea.setBackground(new java.awt.Color(102, 102, 102));
-        infoTextArea.setColumns(20);
-        infoTextArea.setForeground(new java.awt.Color(0, 0, 0));
-        infoTextArea.setRows(5);
-        jScrollPane1.setViewportView(infoTextArea);
-
         lblTitulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(96, 216, 210));
         lblTitulo.setText("NAHUAL");
 
         jLabel3.setFont(new java.awt.Font("Liberation Mono", 1, 18)); // NOI18N
         jLabel3.setText("Informacion");
+
+        fondoTxt.setBackground(new java.awt.Color(87, 220, 199));
+
+        infoTextArea.setEditable(false);
+        infoTextArea.setBackground(new java.awt.Color(102, 102, 102));
+        infoTextArea.setColumns(20);
+        infoTextArea.setForeground(new java.awt.Color(254, 254, 254));
+        infoTextArea.setRows(5);
+        jScrollPane1.setViewportView(infoTextArea);
+
+        javax.swing.GroupLayout fondoTxtLayout = new javax.swing.GroupLayout(fondoTxt);
+        fondoTxt.setLayout(fondoTxtLayout);
+        fondoTxtLayout.setHorizontalGroup(
+            fondoTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoTxtLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        fondoTxtLayout.setVerticalGroup(
+            fondoTxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoTxtLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,12 +141,12 @@ public class CholqijFrame extends javax.swing.JFrame {
                         .addGap(17, 17, 17)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(143, 143, 143))))
+                        .addGap(143, 143, 143))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(fondoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(169, 169, 169)
                 .addComponent(lblTitulo)
@@ -152,7 +173,7 @@ public class CholqijFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(anteriorButton)
                             .addComponent(siguienteButton)))
-                    .addComponent(jScrollPane1))
+                    .addComponent(fondoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -184,6 +205,7 @@ public class CholqijFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anteriorButton;
     private javax.swing.JLabel energiaLabel;
+    private javax.swing.JPanel fondoTxt;
     private javax.swing.JTextArea infoTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -18,9 +18,9 @@ public class ConexionDb {//Aquí la conexion a la base de datos
     public static Connection conexion = null;
 
     //llenar con credenciales de su DB , datos de ejemplo
-    final static String nombreBaseDatos = "calendariomaya";
-    final static String usuario = "root";
-    final static String password = "josecarlos";
+    final static String nombreBaseDatos = "LineaTiempo";
+    final static String usuario = "administrador";
+    final static String password = "Admin.123321";
 
     //Nos conectamos a nuestra db
     public static  Connection obtenerConexion() throws SQLException, ClassNotFoundException {

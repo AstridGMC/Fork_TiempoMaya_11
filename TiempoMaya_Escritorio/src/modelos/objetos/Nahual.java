@@ -6,6 +6,7 @@
 package modelos.objetos;
 
 import java.awt.Image;
+import java.io.File;
 import java.sql.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -18,23 +19,20 @@ import javax.swing.JLabel;
 public class Nahual {
     
     private int id;
-    private String nombre,nombreYucateco,nombreEsp, significado, descripcion;
+    private String nombre,animal, significado, descripcion;
     private Date fechaInicio, fechaFinalizacion;
-    private Imagen imagen;
+    private Image imagen;
 
     public Nahual() {
     }
 
-    public Nahual(int id, String nombre, Imagen imagen, String significado, String descripcion, Date fechaInicio, Date fechaFinalizacion, String nombreEsp, String nombreYucateco) {
+    public Nahual( int id,String nombre, String significado, String descripcion, Image imagen,  String animal) {
         this.id = id;
         this.nombre = nombre;
-        this.imagen = imagen;
         this.significado = significado;
         this.descripcion = descripcion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFinalizacion = fechaFinalizacion;
-        this.nombreYucateco = nombreYucateco;
-        this.nombreEsp = nombreEsp;
+        this.imagen = imagen;
+        this.animal = animal;
     }
 
     public int getId() {
@@ -53,11 +51,11 @@ public class Nahual {
         this.nombre = nombre;
     }
 
-    public Imagen getImagen() {
+    public Image getImagen() {
         return imagen;
     }
 
-    public void setImagen(Imagen imagen) {
+    public void setImagen(Image imagen) {
         this.imagen = imagen;
     }
 
@@ -93,19 +91,13 @@ public class Nahual {
         this.fechaFinalizacion = fechaFinalizacion;
     }
 
-    public String getNombreYucateco() {
-        return nombreYucateco;
+    public String getAnimal() {
+        return animal;
     }
 
-    public void setNombreYucateco(String nombreYucateco) {
-        this.nombreYucateco = nombreYucateco;
+    public void setAnimal(String animal) {
+        this.animal = animal;
     }
-
-    public String getNombreEsp() {
-        return nombreEsp;
-    }
-
-    public void setNombreEsp(String nombreEsp) {
-        this.nombreEsp = nombreEsp;
-    }
+    
+    
 }

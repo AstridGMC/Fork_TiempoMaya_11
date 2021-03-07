@@ -70,7 +70,7 @@ public class HechoHistoricoDb {
     public LinkedList<HechoHistorico> leerHechosHistoricos() { //mostramos todos los hechos historicos y devolvemos en una lista
         LinkedList<HechoHistorico> listaHechosHistoricos = new LinkedList<>();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM hechohistorico;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM HechoHistorico;");
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 HechoHistorico usuario = convertirAHH(resultado);

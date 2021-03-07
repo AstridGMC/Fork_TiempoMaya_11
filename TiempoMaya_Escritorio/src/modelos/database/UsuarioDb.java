@@ -20,12 +20,13 @@ import modelos.objetos.Usuario;
  */
 public class UsuarioDb {
     
-    public static String VALIDACION_LOGEO = "SELECT * FROM usuario WHERE email = ? AND password = ?";
+    public static String VALIDACION_LOGEO = "SELECT * FROM Usuario WHERE email = ? AND password = ?";
+    
     private Mensaje mensajes = new Mensaje();
     
     public void crearUsuario(Usuario usuarioACrear) {//creamos un nuevo usuario
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO usuario "
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("INSERT INTO Usuario "
                     + "(username,password,email,nombre,apellido,nacimiento,telefono,rol) "
                     + "VALUES (?,?,?,?,?,?,?,?);");
             statement.setString(1, usuarioACrear.getUsername());

@@ -20,7 +20,7 @@ import modelos.objetos.Usuario;
  */
 public class Informacion {
     
-    private static String CONSULTA_PERFIL = "SELECT * FROM usuario WHERE username = ?";
+    private static String CONSULTA_PERFIL = "SELECT * FROM Usuario WHERE username = ?";
     
     public Usuario buscarDatos(String nombre){
         Usuario user = new Usuario();
