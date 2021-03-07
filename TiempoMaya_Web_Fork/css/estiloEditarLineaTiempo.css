@@ -1,0 +1,41 @@
+
+#principal1{
+    padding-top: 200px;
+    width: 100%;
+    height: 100vh;
+    background: url(../img/fondo.png) top center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  @media (min-width: 1024px) {
+    #principal1 {
+      background-attachment: fixed;
+    }
+  }
+  
+  #transparencia{
+    position: relative;
+    margin-left: 20%; 
+    margin-right: 20%; 
+    margin-top:50px; 
+    background-color: rgba(255, 255, 255,0.5); 
+  }
+  
+  #principal1:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+#titulo {
+  text-align: center; 
+  color: white;
+  position: relative;
+}
+
+ 
