@@ -5,10 +5,17 @@
  */
 package modelos.database;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import modelos.objetos.HechoHistorico;
 
@@ -70,7 +77,7 @@ public class HechoHistoricoDb {
     public LinkedList<HechoHistorico> leerHechosHistoricos() { //mostramos todos los hechos historicos y devolvemos en una lista
         LinkedList<HechoHistorico> listaHechosHistoricos = new LinkedList<>();
         try {
-            PreparedStatement statement = ConexionDb.conexion.prepareStatement("SELECT * FROM HechoHistorico;");
+            PreparedStatement statement = ConexionDb.conexion.prepareStatement("CALL mostrarHechos;");
             ResultSet resultado = statement.executeQuery();
             while (resultado.next()) {
                 HechoHistorico usuario = convertirAHH(resultado);
@@ -99,13 +106,23 @@ public class HechoHistoricoDb {
         return hh;
     }
 
-    public HechoHistorico convertirAHH(ResultSet resultado) {//del resultado de la busqueda obtener el hechohistorico
+    public HechoHistorico convertirAHH(ResultSet resultado){//del resultado de la busqueda obtener el hechohistorico
         HechoHistorico hhDevolver = null;
+         
+        byte[] data = null;
+        BufferedImage img = null;
         try {
-            hhDevolver = new  HechoHistorico(resultado.getInt(1), resultado.getDate(2),resultado.getDate(3),
-                    resultado.getString(4), resultado.getString(5));
+            Blob blob = resultado.getBlob(8);
+             if(blob!=null){
+                data = blob.getBytes(1, (int) blob.length());
+                img = ImageIO.read(new ByteArrayInputStream(data));
+            }
+            hhDevolver = new  HechoHistorico(resultado.getInt(3), resultado.getDate(4),resultado.getDate(5),
+                    resultado.getString(6), resultado.getString(7), img);
         } catch (SQLException ex) {
             mensajes.error("error en conversion de hechoHistorico");
+        } catch (IOException ex) {
+            Logger.getLogger(HechoHistoricoDb.class.getName()).log(Level.SEVERE, null, ex);
         }
         return hhDevolver;
     }

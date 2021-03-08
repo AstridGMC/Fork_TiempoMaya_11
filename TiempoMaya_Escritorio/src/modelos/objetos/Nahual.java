@@ -98,6 +98,4 @@ public class Nahual {
     public void setAnimal(String animal) {
         this.animal = animal;
     }
-    
-    
 }

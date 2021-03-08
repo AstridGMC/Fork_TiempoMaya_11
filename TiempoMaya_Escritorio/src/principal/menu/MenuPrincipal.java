@@ -7,6 +7,7 @@ package principal.menu;
 
 import api.login.ArchivoLogin;
 import frontend.gui.CalendarioHaab;
+import frontend.gui.LosMayas;
 import gui.infonahuales.VentanaInfoNahuales;
 import java.awt.Color;
 import java.awt.Font;
@@ -105,6 +106,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblFechaCholquij = new javax.swing.JLabel();
         lblFechaHaab = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -540,6 +542,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
+        jButton1.setBackground(new java.awt.Color(1, 1, 1));
+        jButton1.setFont(new java.awt.Font("Ubuntu Light", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
+        jButton1.setText("Conoce Mas Sobre Los Mayas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -549,6 +561,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(153, 153, 153)
                 .addComponent(pnlFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(194, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,7 +572,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(pnlFechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -684,6 +702,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         rueda.setVisible(true);
     }//GEN-LAST:event_btnRuedaCalenActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LosMayas mayas = new LosMayas();
+        mayas.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void escribirFecha() {
         Calendar fecha = new GregorianCalendar();
         System.out.println(fechaStr);
@@ -710,6 +733,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnNahuales;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnRuedaCalen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -5,6 +5,11 @@
  */
 package principal.ui;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import modelos.database.InfoCalendario;
 import modelos.objetos.HechoHistorico;
 
 /**
@@ -12,8 +17,9 @@ import modelos.objetos.HechoHistorico;
  * @author sergio
  */
 public class EventoDeTiempo extends javax.swing.JPanel {
-    
+
     private HechoHistorico hechoHistorico;
+
     /**
      * Creates new form EventoDeTiempo
      */
@@ -22,15 +28,26 @@ public class EventoDeTiempo extends javax.swing.JPanel {
     }
 
     public EventoDeTiempo(HechoHistorico hechoHistorico) {
-         initComponents();
+        initComponents();
         this.hechoHistorico = hechoHistorico;
-        if (hechoHistorico!=null) {
-                    lblTitulo.setText(hechoHistorico.getTitulo());
-        lblDescripcion.setText(hechoHistorico.getDescripcion());
-        lblFecha.setText(hechoHistorico.getFechaInicio()+" A "+hechoHistorico.getFechaFinalizacion());
-        
+        if (hechoHistorico != null) {
+            lblTitulo.setText(hechoHistorico.getTitulo());
+            lblDescripcion.setText("<p>" + hechoHistorico.getDescripcion() + "</p>");
+            lblFecha.setText(hechoHistorico.getFechaInicio() + " A " + hechoHistorico.getFechaFinalizacion());
+            if (hechoHistorico.getImagen() != null) {
+                lblImagen.setVisible(true);
+                lblImagen.setIcon(getIconCalendario(hechoHistorico, lblImagen));
+            }else{
+                lblImagen.setVisible(false);
+            }
         }
-        this.setSize(800,300);
+        this.setSize(800, 300);
+    }
+    
+    private Icon getIconCalendario(HechoHistorico calendario, JLabel label) {
+        ImageIcon imIcon = new ImageIcon(calendario.getImagen());
+        Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(172,168 , Image.SCALE_DEFAULT));
+        return icono;
     }
 
     /**
@@ -44,8 +61,12 @@ public class EventoDeTiempo extends javax.swing.JPanel {
 
         lblFecha = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lblDescripcion = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lblDescripcion = new javax.swing.JEditorPane();
+        lblImagen = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(580, 235));
+        setPreferredSize(new java.awt.Dimension(580, 235));
 
         lblFecha.setText("Año");
 
@@ -53,23 +74,29 @@ public class EventoDeTiempo extends javax.swing.JPanel {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Titulo");
 
-        jScrollPane2.setViewportView(lblDescripcion);
+        lblDescripcion.setContentType("text/html"); // NOI18N
+        jScrollPane1.setViewportView(lblDescripcion);
+
+        lblImagen.setText(" ");
+        lblImagen.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                        .addGap(45, 45, 45))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,16 +106,21 @@ public class EventoDeTiempo extends javax.swing.JPanel {
                     .addComponent(lblTitulo)
                     .addComponent(lblFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane lblDescripcion;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JEditorPane lblDescripcion;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

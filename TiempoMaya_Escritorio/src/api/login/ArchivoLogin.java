@@ -17,9 +17,11 @@ public class ArchivoLogin {
     
     public boolean verificarExitenciaArchivo(){
         if(!fileSesion.exists()){
+            System.out.println("false");
             escribirArchivo(null);
             return false;
         }
+        System.out.println("true");
         return true;
     }
     

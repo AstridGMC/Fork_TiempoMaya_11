@@ -8,8 +8,20 @@ package principal.frontend.gui.perfil_usuario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import modelos.database.InfoCalendario;
+import modelos.database.UsuarioDb;
 import modelos.objetos.Usuario;
 import principal.backend.perfil_usuario.Informacion;
 
@@ -22,7 +34,7 @@ public class FramePerfil extends javax.swing.JDialog {
     private FondoPanel fondo = new FondoPanel();
     private Informacion info = new Informacion();
     private Usuario user;
-    
+
     /**
      * Creates new form FramePerfil
      */
@@ -37,8 +49,15 @@ public class FramePerfil extends javax.swing.JDialog {
         lblEmail.setText(user.getEmail());
         lblNombres.setText(user.getNombre());
         lblApellidos.setText(user.getApellido());
-        if(user.getNacimiento() != null) lblNacimiento.setText(user.getNacimiento().toString());
+        if (user.getNacimiento() != null) {
+            lblApellidos.setText(user.getNacimiento().toString());
+        }
+        lblNacimiento.setText(user.getNacimiento().toString());
         lblTelefono.setText(user.getTelefono());
+        if (user.getImagen() != null) {
+            lblImagen.setIcon(getIconUser(user.getImagen(), lblImagen));
+        }
+
     }
 
     /**
@@ -50,19 +69,22 @@ public class FramePerfil extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         panel2 = new javax.swing.JPanel();
         lbl1 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
         lbl3 = new javax.swing.JLabel();
         lbl4 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        lblNombres = new javax.swing.JLabel();
-        lblApellidos = new javax.swing.JLabel();
         lblNacimiento = new javax.swing.JLabel();
-        lblTelefono = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JTextField();
+        lblNombres = new javax.swing.JTextField();
+        lblApellidos = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JTextField();
+        btnEditar = new javax.swing.JButton();
         panel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblImagen = new javax.swing.JLabel();
+        imgButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,6 +103,45 @@ public class FramePerfil extends javax.swing.JDialog {
         lbl5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbl5.setText("Telefono:");
 
+        lblEmail.setEditable(false);
+        lblEmail.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        lblEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblEmailActionPerformed(evt);
+            }
+        });
+
+        lblNombres.setEditable(false);
+        lblNombres.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        lblNombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblNombresActionPerformed(evt);
+            }
+        });
+
+        lblApellidos.setEditable(false);
+        lblApellidos.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        lblApellidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblApellidosActionPerformed(evt);
+            }
+        });
+
+        lblTelefono.setEditable(false);
+        lblTelefono.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        lblTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblTelefonoActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
@@ -95,53 +156,74 @@ public class FramePerfil extends javax.swing.JDialog {
                     .addComponent(lbl5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(lblEmail)
+                    .addComponent(lblNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(lblApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(lblNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                .addContainerGap(509, Short.MAX_VALUE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl5, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
         );
+
+        lblImagen.setBackground(new java.awt.Color(254, 254, 254));
+        lblImagen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        imgButton.setText("Cambiar Imagen");
+        imgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imgButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(340, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+            .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addGap(0, 101, Short.MAX_VALUE)
+                        .addComponent(imgButton))
+                    .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -161,41 +243,152 @@ public class FramePerfil extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    int img = 0;
+    private void imgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgButtonActionPerformed
 
+        if (img == 0) {
+            img = 1;
+            imgButton.setText("GUARDAR Imagen");
+            guardarArchivo();
+        } else {
+            imgButton.setText("Cambiar Imagen");
+            try {
+                FileInputStream is = new FileInputStream(archivo);
+                UsuarioDb userDB = new UsuarioDb();
+                user.setImagen(userDB.actualizarImagen(is, user));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FramePerfil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_imgButtonActionPerformed
+
+    private void lblEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEmailActionPerformed
+
+    private void lblNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblNombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblNombresActionPerformed
+
+    private void lblApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblApellidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblApellidosActionPerformed
+
+    private void lblTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblTelefonoActionPerformed
+    int aux =0;
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        if(aux==0){
+            btnEditar.setText("Guardar");
+            ActivoDesactivo(true);
+            UsuarioDb userDB = new UsuarioDb();
+            Usuario userN = new Usuario(user.getUsername(), 
+                    user.getPassword(), lblEmail.getText(),
+                    lblNombres.getText(), lblApellidos.getText(),
+                    lblTelefono.getText(), user.getNacimiento(), user.getRolId());
+            userDB.actualizarUsuario(userN, user.getUsername());
+            aux=1;
+        }else{
+            aux=0;
+            btnEditar.setText("Editar");
+            ActivoDesactivo(false);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+    
+    public void ActivoDesactivo(boolean b){
+        lblEmail.setEditable(b);
+        lblNombres.setEditable(b);
+        lblApellidos.setEditable(b);
+        lblTelefono.setEditable(b);
+    }
+    
+    
     class FondoPanel extends JPanel {
-        
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("fondoPerfil.jpg")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
-    
-    
+    ImageIcon imagen;
+    File archivo;
+    String ruta;
+    String nombreArchivo;
+
+    public void guardarArchivo() {
+        System.out.println("Ejecutando");
+
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("PNG,JPG", "png", "jpg");
+        JFileChooser seleccion = new JFileChooser(); // Se crea la instancia para colocar parametros de interes
+        seleccion.setFileFilter(filtro);
+        seleccion.setDialogType(JFileChooser.SAVE_DIALOG); // El tipo de JFileChooser que vamos a usar
+        seleccion.setFont(new java.awt.Font("Lucida Handwriting", 0, 18)); // (opcional) Cambiando el tipo de letra
+        //seleccion.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //(opcional) Estableciendo que solo me muestre los directorios. 
+
+        int respuesta = seleccion.showSaveDialog(this); // Se apertura la ventana.
+        switch (respuesta) { // segun la opcion del usuario se ejecutan los algoritmos de interes
+            case JFileChooser.APPROVE_OPTION:
+                archivo = seleccion.getSelectedFile();
+                ruta = archivo.getAbsolutePath();
+                System.out.println(ruta);
+                nombreArchivo = archivo.getName();
+                imagen = new ImageIcon(ruta);
+                lblImagen.setIcon(subirImg());
+                System.out.println("Guardar");
+                break;
+            case JFileChooser.CANCEL_OPTION:
+                System.out.println("Cancelado");
+                break;
+            default:
+                System.out.println("Error");
+                break;
+        }
+        
+    }
+
+    private Icon subirImg() {
+        System.out.println(lblImagen.getWidth()+ " alto "+ lblImagen.getHeight());
+        Icon imagenPerfil1 = new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_DEFAULT));
+        return imagenPerfil1;
+    }
+
+    Icon imagenPerfil;
+
+    private Icon getIconUser(Image imag, JLabel label) {
+        ImageIcon imIcon = new ImageIcon(imag);
+        imagenPerfil = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        return imagenPerfil;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton imgButton;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
     private javax.swing.JLabel lbl4;
     private javax.swing.JLabel lbl5;
-    private javax.swing.JLabel lblApellidos;
-    private javax.swing.JLabel lblEmail;
+    private javax.swing.JTextField lblApellidos;
+    private javax.swing.JTextField lblEmail;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblNacimiento;
-    private javax.swing.JLabel lblNombres;
-    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JTextField lblNombres;
+    private javax.swing.JTextField lblTelefono;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
     // End of variables declaration//GEN-END:variables

@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/frontend/gui/CalendarioHaab.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/backend/calendari_cholquij/calcular_fecha/CalcularFecha.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/objetos/FechaHaab.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/database/NahualDb.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/gui/infonahuales/VentanaInfoNahuales.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/frontend/gui/calendari_cholquij/CholqijFrame.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/database/FechaCholqijDb.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/objetos/FechaCholqij.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/backend/calendari_cholquij/calcular_fecha/ManejadorCalcular.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/menu/MenuPrincipal.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/database/InfoCalendario.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/database/FechaHaabDb.java</file>
-            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/objetos/Nahual.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/database/HaabDb.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/ui/LineaDeTiempo.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/ui/EventoDeTiempo.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/main.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/database/HechoHistoricoDb.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/modelos/objetos/HechoHistorico.java</file>
+            <file>file:/home/astridmc/Documentos/Fork_TiempoMaya_11/TiempoMaya_Escritorio/src/principal/ui/RuedaCalendarica.java</file>
         </group>
     </open-files>
 </project-private>

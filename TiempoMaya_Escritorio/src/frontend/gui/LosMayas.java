@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package principal.frontend.gui.calendari_cholquij;
+package frontend.gui;
 
 import java.awt.Image;
 import java.util.Base64;
@@ -11,20 +11,19 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import modelos.database.CholqijDb;
-import modelos.database.HaabDb;
+import modelos.database.LosMayasDB;
 import modelos.database.InfoCalendario;
 
 /**
  *
  * @author astridmc
  */
-public class InfoCholquij extends javax.swing.JFrame {
+public class LosMayas extends javax.swing.JFrame {
 
     /**
-     * Creates new form InfoCholquij
+     * Creates new form LosMayas
      */
-    public InfoCholquij() {
+    public LosMayas() {
         initComponents();
         panelInfo.setText(LlenarInfo());
         setLocationRelativeTo(null);   
@@ -57,7 +56,7 @@ public class InfoCholquij extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(254, 254, 254));
         jLabel1.setFont(new java.awt.Font("URW Palladio L", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(75, 229, 197));
-        jLabel1.setText("Calendario Cholqu'ij");
+        jLabel1.setText("La Cultura Maya");
 
         jPanel2.setBackground(new java.awt.Color(254, 254, 254));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(39, 232, 232))); // NOI18N
@@ -132,7 +131,7 @@ public class InfoCholquij extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -160,18 +159,17 @@ public class InfoCholquij extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
+//llenar panel html
     public String LlenarInfo() {
         String info = "";
         int con = 0;
-        CholqijDb infocal = new CholqijDb();
-        List<InfoCalendario> calendario = infocal.EscribirInfoCholquij();
+        LosMayasDB infoMaya = new LosMayasDB();
+        List<InfoCalendario> calendario = infoMaya.EscribirInfoMaya();
         for (int i = 0; i < calendario.size(); i++) {
             if (!calendario.get(i).getTitulo().equals("segundaParte Informacion")) {
                 info = info + "<h3 class=\"section-title\" style=\"  color: #2dc997;\"> " + calendario.get(i).getTitulo() + " </h3>";
@@ -182,8 +180,8 @@ public class InfoCholquij extends javax.swing.JFrame {
                     + "</div>\n";
             if (calendario.get(i).getImgData() != null) {
                 String img2 = "data:image/png;base64," + Base64.getEncoder().encodeToString(calendario.get(i).getImgData());
-
-                /*info = info
+                /*
+                info = info
                         + "            <div class=\"col-lg-6 background order-lg-2 order-1 wow fadeInRight\">\n"
                         + "              <br>\n"
                         + "              <img src = \"" + img2 + "\" alt='img' width=\"80%\" alt=\"Imagen del calendario habb\" style=\"margin-left: 150px;\">\n"
@@ -201,7 +199,7 @@ public class InfoCholquij extends javax.swing.JFrame {
         }
         return info;
     }
-
+    
     private Icon getIconCalendario(InfoCalendario calendario, JLabel label) {
         ImageIcon imIcon = new ImageIcon(calendario.getImagen());
         Icon icono = new ImageIcon(imIcon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));

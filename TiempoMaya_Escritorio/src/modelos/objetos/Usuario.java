@@ -5,6 +5,7 @@
  */
 package modelos.objetos;
 
+import java.awt.Image;
 import java.sql.Date;
 
 /**
@@ -13,14 +14,15 @@ import java.sql.Date;
  */
 public class Usuario {
     
-    private String username, password, email, nombre, apellido, telefono;
+    private String username, password, email, nombre, apellido, telefono, rol;
     private Date nacimiento;
-    private int rol;
+    private int rolId;
+    private Image imagen;
 
     public Usuario() {
     }
 
-    public Usuario(String username, String password, String email, String nombre, String apellido, String telefono, Date nacimiento, int rol) {
+    public Usuario(String username, String password, String email, String nombre, String apellido, String telefono, Date nacimiento, int rolId, String rol, Image imagen) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -28,9 +30,22 @@ public class Usuario {
         this.apellido = apellido;
         this.telefono = telefono;
         this.nacimiento = nacimiento;
-        this.rol = rol;
+        this.rolId = rolId;
+        this.rol=rol;
+        this.imagen = imagen;
     }
 
+     public Usuario(String username, String password, String email, String nombre, String apellido, String telefono, Date nacimiento, int rolId) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.nacimiento = nacimiento;
+        this.rolId = rolId;
+    }
+     
     public String getUsername() {
         return username;
     }
@@ -87,16 +102,32 @@ public class Usuario {
         this.nacimiento = nacimiento;
     }
 
-    public int getRol() {
-        return rol;
+    public int getRolId() {
+        return rolId;
     }
 
-    public void setRol(int rol) {
-        this.rol = rol;
+    public void setRol(int rolId) {
+        this.rolId = rolId;
     }
         @Override
     public String toString() {
         return "\n Usuario{" + "username=" + username + ", password=" + password + ", email=" + email + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", nacimiento=" + nacimiento + ", rol=" + rol + '}';
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Image getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Image imagen) {
+        this.imagen = imagen;
     }
 
     
