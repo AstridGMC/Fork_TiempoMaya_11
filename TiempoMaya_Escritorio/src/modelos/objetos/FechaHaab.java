@@ -14,10 +14,6 @@ import java.sql.Date;
 public class FechaHaab {
 
     private int id;
-    private Nahual nahual;
-    private Winal winal;
-    private String nombre, descripcion;
-    private Date fecha;
 
     public FechaHaab() {
     }

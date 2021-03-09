@@ -75,7 +75,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         navMenu4 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        agregarEvento = new javax.swing.JButton();
         btnCholqij4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnSiguiente = new javax.swing.JButton();
@@ -99,14 +99,14 @@ public class LineaDeTiempo extends javax.swing.JFrame {
 
         navMenu4.setBackground(new java.awt.Color(75, 229, 197));
 
-        jButton6.setBackground(new java.awt.Color(124, 243, 219));
-        jButton6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Agregar Evento");
-        jButton6.setBorderPainted(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        agregarEvento.setBackground(new java.awt.Color(124, 243, 219));
+        agregarEvento.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        agregarEvento.setForeground(new java.awt.Color(0, 0, 0));
+        agregarEvento.setText("Agregar Evento");
+        agregarEvento.setBorderPainted(false);
+        agregarEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                agregarEventoActionPerformed(evt);
             }
         });
 
@@ -127,7 +127,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
             navMenu4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navMenu4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6)
+                .addComponent(agregarEvento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCholqij4)
                 .addContainerGap(582, Short.MAX_VALUE))
@@ -135,7 +135,7 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         navMenu4Layout.setVerticalGroup(
             navMenu4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnCholqij4, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(agregarEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel2.setOpaque(false);
@@ -243,11 +243,11 @@ public class LineaDeTiempo extends javax.swing.JFrame {
         btnSiguiente.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void agregarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarEventoActionPerformed
         AgregarEvento ae= new AgregarEvento();
         ae.setLinea(this);
         ae.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_agregarEventoActionPerformed
 
     private void btnCholqij4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCholqij4ActionPerformed
 
@@ -276,10 +276,10 @@ public class LineaDeTiempo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarEvento;
     private javax.swing.JButton btnCholqij4;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
