@@ -62,7 +62,15 @@ $idhecho = -1;
                         ?>
                         <div class="carousel-caption" style=" padding-top: 20px;">
                             <div style="height: 360px;" style="background-color: #C7FFEB; ">
-                                <img id="imagen<?php echo $num ?>" src="https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/7-misterios-de-la-cultura-maya-que-despertaran-tu-curiosidad.jpg" alt="Paisaje-02" class="imagen">
+                            <?php
+                                    if (isset($hecho['imagen'])!=null) {?>
+                                        <img id="imagen<?php echo $num ?>"  <?php echo 'src = "data:image/png/jpg/jpeg;base64,' . base64_encode($hecho['imagen']) . '"' ?>   alt="Paisaje-02" class="imagen">
+                                     <?php }else{ ?>
+                                        <img id="imagen<?php echo $num ?>" src="https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/7-misterios-de-la-cultura-maya-que-despertaran-tu-curiosidad.jpg" alt="Paisaje-02" class="imagen">
+                                    <?php }
+                                               
+                            ?>
+                                
                                 <div id="desc<?php echo $num ?>" style="display: none;">
                                     <div class="card" class="transparencia" style=" margin-top: 30%; background-color: rgba(255, 255, 255,0.5);   align-items: center; display: flex;justify-content: center;">
                                         <div style="padding-left: 5%; padding-right:5% ; border: 1px dashed goldenrod;">
