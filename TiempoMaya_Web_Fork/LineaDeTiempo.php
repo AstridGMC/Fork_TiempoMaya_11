@@ -28,14 +28,14 @@ $idhecho = -1;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/estiloLineaTiempo.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    
+
 </head>
 
-<body  id= "inicio1">
-        <header id="header" style="background-color: rgba(52, 59, 64, 0.6);">
-            <?php include 'BarradeNavegacion.php'; ?>
-        </header>
-    <section >
+<body id="inicio1" style="background: url(./img/fondo.png);">
+    <header id="header" style="background-color: rgba(52, 59, 64, 0.6);">
+        <?php include 'BarradeNavegacion.php'; ?>
+    </header>
+    <section>
         <div style="padding-top: 150px;">
             <div id="myCarousel" class="carousel" data-ride="carousel">
                 <div class="carousel-inner" style="height: 600px; background: url(img/MaravillosoMundoMaya.jpg);" style="background-color: #C7FFEB; ">
@@ -65,18 +65,18 @@ $idhecho = -1;
                                 <img id="imagen<?php echo $num ?>" src="https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/7-misterios-de-la-cultura-maya-que-despertaran-tu-curiosidad.jpg" alt="Paisaje-02" class="imagen">
                                 <div id="desc<?php echo $num ?>" style="display: none;">
                                     <div class="card" class="transparencia" style=" margin-top: 30%; background-color: rgba(255, 255, 255,0.5);   align-items: center; display: flex;justify-content: center;">
-                                        <div  style="padding-left: 5%; padding-right:5% ; border: 1px dashed goldenrod;">
+                                        <div style="padding-left: 5%; padding-right:5% ; border: 1px dashed goldenrod;">
                                             <h5 class="card-title" style="font-size: 4rem;">Descripcion</h5>
                                             <p class="card-text" style="text-align: justify; color:black;"><?php echo $hecho['descripcion'] ?></p>
                                             <form action="editarLineaTiempo.php" method="post">
-                                                <input  type="hidden"  name="idHecho" value="<?php echo $hecho['id'] ?>" >
+                                                <input type="hidden" name="idHecho" value="<?php echo $hecho['id'] ?>">
                                                 <?php
-                                                    if(isset($_SESSION['rol'])){
-                                                        //if($_SESSION['rol']=='Escritor'){
-                                                            echo ' <button type="submit" class="btn btn-primary">Editar</button>';
-                                                        //}
+                                                if (isset($_SESSION['rol'])) {
+                                                    if ($_SESSION['rolId'] == 1) {
+                                                        echo ' <button type="submit" class="btn btn-primary">Editar</button>';
                                                     }
-                                                ?>                                               
+                                                }
+                                                ?>
                                             </form>
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@ $idhecho = -1;
         </div>
     </section>
 
-    <section style="padding-top: 700px;">
+    <section style="">
 
 
     </section>
@@ -117,7 +117,8 @@ $idhecho = -1;
     <footer id="footer">
         <?php
         if (isset($_SESSION['nombre'])) {
-            echo '<div class="container">
+            if ($_SESSION['rolId'] == 1) {
+                echo '<div class="container">
             <div class="padre"  style=" background-color:#2dc997;">
                 <div style="color: black; padding-left: 5%; background-color:#2dc997;">
                     <div class="card-header">
@@ -132,6 +133,7 @@ $idhecho = -1;
                 </div>
             </div>
         </div>';
+            }
         }
         ?>
 

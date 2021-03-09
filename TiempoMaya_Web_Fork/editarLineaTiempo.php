@@ -38,7 +38,7 @@ endforeach;
             <h1 id="titulo" >INSERTAR NUEVO HECHO</h1>
             <div id="transparencia">
                 <div style="padding: 40px; color:black; font-size:20px;">
-                    <form action="./backend/insertrarHecho.php" method="post">
+                    <form action="./backend/actualizarHecho.php" method="post"  enctype='multipart/form-data' >
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Titulo</label>
                             <div class="col-sm-10">

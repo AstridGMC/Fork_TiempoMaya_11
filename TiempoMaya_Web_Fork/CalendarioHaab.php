@@ -10,7 +10,7 @@ $resultadoCalendario = $conexion->query($sql);
 
 <head>
   <meta charset="utf-8">
-  <title>Tiempo Maya</title>
+  <title>Calendario Haab</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">

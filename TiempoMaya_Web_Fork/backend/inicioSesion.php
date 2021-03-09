@@ -27,6 +27,7 @@
       echo $usuario['email'];
         $_SESSION['nombre'] = $user;
         $_SESSION['rol'] = $rango["tipo"];
+        $_SESSION['rolId'] = $usuario['rol'];
         $_SESSION['email'] = $usuario['email'];
         // Guardo en la sesión el rango del usuario.
       
