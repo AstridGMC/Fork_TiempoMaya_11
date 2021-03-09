@@ -1,0 +1,22 @@
+.main-container{
+    width: 35%;
+    margin: 100px  auto;
+    padding: 20px 20px 60px;
+    -webkit-box-shadow: 13px 10px 5px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 13px 10px 5px -4px rgba(0,0,0,0.75);
+    box-shadow: 13px 10px 5px -4px rgba(0,0,0,0.75);
+    background: gray;
+    color:white;
+}
+body{
+background: url("./img/fondo.png") ;
+background-size: cover;
+}
+.nav-menu > li > a:before {
+background-color: #16a085;
+}
+
+.main-container {
+    border: #2dc997 6px solid;
+    border-radius: 5%;
+}
